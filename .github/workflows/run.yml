@@ -1,0 +1,33 @@
+name: LeetCode Daily Tracker
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # Runs every day at 6 PM UTC
+  workflow_dispatch:       # Allows manual run
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Create credentials file
+        run: |
+          echo "$GOOGLE_CREDS" > credentials.json
+        env:
+          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
+
+      - name: Run LeetCode Tracker
+        run: |
+          python main.py
