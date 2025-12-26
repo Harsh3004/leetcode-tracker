@@ -30,7 +30,7 @@ def update_sheet():
     )
 
     client = gspread.authorize(creds)
-    sheet = client.open("LeetCode Tracker").sheet1
+    sheet = client.open_by_key("1tLHch40aitSHCv3mBelhE9TG-n2rFI-WGst3jNu5tws").sheet1
 
     data = get_leetcode_data()
     for item in data:
