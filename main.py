@@ -10,7 +10,8 @@ def get_leetcode_data():
     query = {
         "query": """
         query recentAcSubmissionList($username: String!) {
-          recentAcSubmissionList(username: $username, limit: 10) {
+          # recentAcSubmissionList(username: $username, limit: 10) {
+          recentAcSubmissionList(username: $username) {
             title
             titleSlug
             timestamp
